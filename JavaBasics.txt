@@ -1,0 +1,332 @@
+
+Static Variables:
+1) Static variables and Static Methods are very important concept in Java
+2) Static Variables are declared with static keyword.
+3) This means there is only one copy of that variable for the entire class, not for the individual instance.
+4) Static method means it can be called without creating instance of the class.
+5) Static variables are used to retain the values from each call to the class.
+
+Example 1: (Static Variable declared in a constructor)
+package java_Basics;
+public class Example {
+public static int noofworkers=0;
+	String name;
+	Example(String name){ //parameterized constructor//
+		this.name=name;
+		noofworkers++;
+	}
+	public static void main(String[] args) {	
+		Example depart=new Example("IT"); - Creating object for constructor.
+		System.out.println(depart.name);
+		System.out.println(Example.noofworkers);	
+		Example depart2=new Example("Finance");
+		System.out.println(depart2.name);
+		System.out.println(Example.noofworkers);
+	}
+}
+Output:
+IT
+1
+Finance
+2
+_______________________________________________________________________________________________________________
+INHERITANCE:
+
+Accessing one class properties to the other class or child class.
+Code reusability.
+It uses Extends keyword.
+Parent class or Super class 
+Child Class or Sub-class
+
+Types of Inheritance:
+1) Single Inheritance:
+One parent class has only one child class or one child has only one parent class.
+Example:
+Parent Class:
+package java_Basics;
+public class Inherit1 {
+	int x=23;
+	public void inherit() {
+		System.out.println("This text is from the parent class");
+	}
+}
+Child Class:
+package java_Basics;
+public class Inherit2 extends Inherit1 {
+	public static void main(String[] args) {
+     Inherit2 Parent=new Inherit2();
+     Parent.inherit();
+     System.out.println(Parent.x);
+	}
+}
+Output from Chlid class:
+This text is from the parent class
+23
+
+2)Multi-level Inheritance:
+Two or more responsibilities given to a class is called multi-level inheritance.
+In simple terms: One parent class is inherited by a child class and that child class is inherited by other child class.
+Example: Parent Class:
+public class Inherit1 {
+	int x=23;
+	public void inherit() {
+		System.out.println("This text is from the parent class");
+	}
+}
+Child Class1:
+public class Inherit2 extends Inherit1 {
+	public void check() {
+		System.out.println("This text is from the 1st Chlid class");
+	}
+	public static void main(String[] args) {
+     Inherit2 Parent=new Inherit2();
+     Parent.inherit();
+     System.out.println(Parent.x);
+	}
+}
+Child class of Child Class1:
+public class Inherit3 extends Inherit2{
+	public static void main(String[] args) {
+		Inherit3 Multiparent = new Inherit3();
+		Multiparent.inherit();
+		Multiparent.check();
+		System.out.println(Multiparent.x);
+	}
+}
+Output: 
+While we run the last Child class:
+This text is from the parent class
+This text is from the 1st Child class
+23
+
+3)Hierarchical Inheritance:
+One parent class has two or more child classes. 
+Example: Parent Class:
+public class Inherit1 {
+	int x=23;
+	public void inherit() {
+		System.out.println("This text is from the parent class");
+	}
+}
+Child class1:
+public class Inherit2 extends Inherit1 {
+	
+	public void check() {
+		System.out.println("This text is from the Inherit2 class");
+	}
+	public static void main(String[] args) {                                                                     
+     Inherit2 Parent=new Inherit2();
+     Parent.inherit();
+     System.out.println(Parent.x);
+	}
+}
+Child Class 2:
+public class Inherit4 extends Inherit1{
+	public void Dinesh(){
+		System.out.println("This text is from Inherit4 class");
+	}
+	public static void main(String[] args) {
+		Inherit4 Parent=new Inherit4();
+	     Parent.inherit();
+	     System.out.println(Parent.x);
+	    Parent.Dinesh();
+	}
+}
+
+
+4)Multiple Inheritance:
+One child class has two or more Parent class: but it is not possible in Java classes, because of complexity and decision making.
+But Multiple inheritance can be achieved using Interface concept.
+
+5)Hybrid Inheritance:
+ Combination of inheritance is Hybrid inheritance.
+
+POLYMORPHISM:
+Poly means many Morph means forms.
+Performing Single Task in Many ways.
+
+Can be achieved by Two ways:
+1) Run-time polymorphism (Method Overriding):
+PolyDog method:
+public class PolyDog {
+	public void makesound(){
+		System.out.println("Dogs Barks");
+	}
+}
+
+PolyCat method:
+public class PolyCat {
+	public void makesound(){
+		System.out.println("Cat Meow");
+	}
+}
+
+PolyCatdog Main Method:
+public class PolyCatdog {
+	public static void main(String[] args) {
+		PolyCat ObjCat=new PolyCat();
+		ObjCat.makesound();
+		
+		PolyDog ObjDog=new PolyDog();
+	        ObjDog.makesound();
+	}
+}
+
+
+2) Compile-time polymorphism (Method Overloading): Can be achieved by Method overloading class.
+Same method names with different parameters.
+
+Overloading Called Method:
+public class Polyoverloadingcalled {
+	public void Printme() {
+		System.out.println("I am Printing");
+	}
+	public void Printme(String wish) {
+		System.out.println("I am Printing:" + wish);
+	}
+	public void Printme(String wish, String   wish2) {
+		System.out.println("I am Printing:" + wish +" " +wish2 );
+	}
+}
+Overloading Calling Method:
+public class Polyoverloadcalling {
+	public static void main(String[] args) {	
+		Polyoverloadingcalled objOverload=new Polyoverloadingcalled();
+		objOverload.Printme();
+		objOverload.Printme("Good Morning!");
+		objOverload.Printme("Good Morning", "Have a Great Day ahead!");
+	}
+}
+
+-----------------------------------------------------------
+ABSTRACTION: (Data Hiding) - Abstract Keyword is used.
+
+Abstraction is the process of hiding certain details & showing only essential info.
+It can be achieved with Abstract class or Interfaces.
+Method and class both can be abstract.
+Abstract Class : It is a restricted class that cannot be used to create an object to access it, we need to inherit that class from another class.
+Abstract Method : Can only be used in abstract class and it does not have body.
+Abstract class contains both Abstract as well as no abstract methods
+
+All the unimplemented methods in parent class should be implemented in Child class.
+ 
+Abstract Parent Class:
+public abstract class Abstractparent {
+	public abstract void animalsound(); //Abstract Method - Unimplemented method
+	public void sleep() {
+		System.out.println("I'm sleeping yawww");
+	}
+}
+Abstract Child Class:
+public class AbstractChild extends Abstractparent{
+	public void animalsound() {  //Implementing unimplemented method from Parent class.
+		System.out.println("I make wee wee wee sound");
+	}
+	public static void main(String[] args) {
+		AbstractChild abs=new AbstractChild();
+		abs.animalsound();
+		abs.sleep();
+	}
+}
+---------------------------------------------------------------------
+ENCAPSULATION:
+Encapsulation is used to make sure that "Sensitive" data is hidden from users.
+To do Encapsulation: We declare variables as Private.(so, it can't be changed)
+To let other classes to set or get the values of private variables, we have to define "get" and "set" methods which are public.
+
+To set a Private String:
+public void setName(string newname){
+this.name=newname;
+}
+To Get a Private String:
+public String getName(){
+return name;
+}
+
+Advantages:
+Better control on the class variables.
+Class variables can be made read only(using get method) or write only (using set method)
+Variables will be secured.
+
+Encapsulation Called class:
+public class encapcalled {
+	private String name; //private variables are restricted to same class.
+	public void setName(String newname){
+		this.name=newname;
+		}
+	public String getName(){
+		return name;
+}
+}
+Encapsulation Calling class:
+public class Encapcalling {
+	public static void main(String[] args) {
+		encapcalled encap=new encapcalled();
+		encap.setName("Sundar"); //Set the name of the variable
+		System.out.println(encap.getName());
+	}
+}
+
+
+--------------------------------------------------------------------------------
+INTERFACE:
+
+New-->Interface
+
+Interface always have abstract methods.
+we need not need to mention as abstract keyword because, interfaces will only have abstract methods.
+Interface can't contain non-abstract methods.
+Implement the unimplemented methods only in child class.
+To implements abstract methods Uses Implements keyword in child class instead of extends keyword 
+MULTIPLE inheritance can be achieved using interface.
+
+Interface 1:
+public interface Interclass {  
+	public void eat();       =>No abstract keyword used as interface only allows abstract methods.
+}
+Interface 2:
+public interface Intermultipleinheri {
+	public void sleep();
+}
+
+Multiple Inheritance/Interface calling class :
+public class interfclscalling implements Interclass,Intermultipleinheri{
+	public void eat() {
+		System.out.println("Dinesh is eating");
+	}
+	public void sleep() {
+		System.out.println("Kowshik is Sleeping");	
+	}
+	public static void main(String[] args) {
+		interfclscalling intf=new interfclscalling();
+		intf.eat();
+		intf.sleep();
+	}	
+}
+
+
+------------------------------------
+Regular expression:
+Regular expression is used to find some patterns in the string.
+In Java package - java.util.regex-classes is present with sub classes - Pattern and Matcher
+Pattern Class - Defines a pattern to be searched.
+Matcher class - Searches the pattern in the string - Methods - find()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
